@@ -11,6 +11,7 @@
             width: 100vw;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             overflow: hidden;
@@ -20,14 +21,39 @@
             height: 60px;
             padding: 5px 20px;
         }
+
+        div {
+            width: 350px;
+            margin: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h2{
+            margin: 5px;
+        }
+        input {
+            width: 150px;
+            box-sizing: border-box;
+            font-weight: bold;
+        }
     </style>
 </head>
 
 <body>
     <div>
-        <p>RGB(<span id="colorCodeSpan">255,255,255</span>)</p>
-        <button onclick="changeColor()">Change Color</button>
+        <h2>Choose a color:</h2>
+        <input type="color" id="colorPicker" onchange="changeColor('from-picker')" value="#ff0000">
     </div>
+    <div>
+        <h2>Write a color:</h2>
+        <input type="text" id="colorCodeInput" onchange="changeColor('from-color-code-input')"></input>
+    </div>
+    <div>
+        <h2>Random color:</h2>
+        <input type="button" onclick="changeColor('from-button')" value="Change Color"></input>
+    </div>
+
     <script>
         const createColor = () => {
             return Math.floor(Math.random() * 256);
@@ -35,17 +61,29 @@
         let colorCode = {
             code1: null,
             code2: null,
-            code3: null
+            code3: null,
         }
-        const changeColor = () => {
+        const changeColor = (where) => {
+            let color;
             const body = document.body;
-            const colorCodeSpan = document.getElementById("colorCodeSpan");
-            colorCode.code1 = createColor();
-            colorCode.code2 = createColor();
-            colorCode.code3 = createColor();
-            let color = `${colorCode.code1},${colorCode.code2},${colorCode.code3}`;
-            body.style.backgroundColor = `RGB(${color})`;
-            colorCodeSpan.textContent = color;
+            const colorCodeInput = document.getElementById("colorCodeInput");
+            const colorPicker = document.getElementById("colorPicker");
+            if (where === "from-button") {
+                colorCode.code1 = createColor();
+                colorCode.code2 = createColor();
+                colorCode.code3 = createColor();
+                color = `RGB(${colorCode.code1},${colorCode.code2},${colorCode.code3})`;
+                body.style.backgroundColor = color;
+            }
+            else if (where === "from-picker") {
+                color = colorPicker.value;
+                body.style.backgroundColor = color;
+            }
+            else if (where === "from-color-code-input") {
+                color = colorCodeInput.value;
+                body.style.backgroundColor = color;
+            }
+            colorCodeInput.value = color;
         }
     </script>
 </body>

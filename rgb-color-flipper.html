@@ -55,24 +55,17 @@
     </div>
 
     <script>
+        let color = "RGB(255,255,255)";
+        colorCodeInput.value = color;
         const createColor = () => {
             return Math.floor(Math.random() * 256);
         }
-        let colorCode = {
-            code1: null,
-            code2: null,
-            code3: null,
-        }
-        const changeColor = (where) => {
-            let color;
+        const changeColor = (where) => {            
             const body = document.body;
             const colorCodeInput = document.getElementById("colorCodeInput");
             const colorPicker = document.getElementById("colorPicker");
             if (where === "from-button") {
-                colorCode.code1 = createColor();
-                colorCode.code2 = createColor();
-                colorCode.code3 = createColor();
-                color = `RGB(${colorCode.code1},${colorCode.code2},${colorCode.code3})`;
+                color = `RGB(${createColor()},${createColor()},${createColor()})`;
                 body.style.backgroundColor = color;
             }
             else if (where === "from-picker") {

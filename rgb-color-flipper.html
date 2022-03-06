@@ -11,12 +11,19 @@
             width: 100vw;
             height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             overflow: hidden;
         }
-
+        .card{
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(245, 245, 245, 0.5);
+            padding: 20px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.658);
+        }
         button {
             height: 60px;
             padding: 5px 20px;
@@ -29,9 +36,12 @@
             justify-content: space-between;
             align-items: center;
         }
-        h2{
+
+        h2 {
             margin: 5px;
+            text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.4);
         }
+
         input {
             width: 150px;
             box-sizing: border-box;
@@ -41,18 +51,21 @@
 </head>
 
 <body>
-    <div>
-        <h2>Choose a color:</h2>
-        <input type="color" id="colorPicker" onchange="changeColor('from-picker')" value="#ff0000">
+    <div class="card">
+        <div>
+            <h2>Choose a color:</h2>
+            <input type="color" id="colorPicker" onchange="changeColor('from-picker')" value="#ff0000">
+        </div>
+        <div>
+            <h2>Write a color:</h2>
+            <input type="text" id="colorCodeInput" onchange="changeColor('from-color-code-input')"></input>
+        </div>
+        <div>
+            <h2>Random color:</h2>
+            <input type="button" onclick="changeColor('from-button')" value="Change Color"></input>
+        </div>
     </div>
-    <div>
-        <h2>Write a color:</h2>
-        <input type="text" id="colorCodeInput" onchange="changeColor('from-color-code-input')"></input>
-    </div>
-    <div>
-        <h2>Random color:</h2>
-        <input type="button" onclick="changeColor('from-button')" value="Change Color"></input>
-    </div>
+
 
     <script>
         let color = "RGB(255,255,255)";
@@ -60,7 +73,7 @@
         const createColor = () => {
             return Math.floor(Math.random() * 256);
         }
-        const changeColor = (where) => {            
+        const changeColor = (where) => {
             const body = document.body;
             const colorCodeInput = document.getElementById("colorCodeInput");
             const colorPicker = document.getElementById("colorPicker");

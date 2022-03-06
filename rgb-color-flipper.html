@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <title>Color Flipper</title>
     <style>
         body {
@@ -15,7 +18,8 @@
             align-items: center;
             overflow: hidden;
         }
-        .card{
+
+        .card {
             display: flex;
             flex-direction: column;
             background-color: rgba(245, 245, 245, 0.5);
@@ -24,6 +28,7 @@
             border-radius: 5px;
             box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.658);
         }
+
         button {
             height: 60px;
             padding: 5px 20px;
@@ -44,8 +49,16 @@
 
         input {
             width: 150px;
+            height: 27px;
             box-sizing: border-box;
             font-weight: bold;
+        }
+
+        input[type="button"],
+        input[type="color"] {
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'Lobster', cursive;
         }
     </style>
 </head>
